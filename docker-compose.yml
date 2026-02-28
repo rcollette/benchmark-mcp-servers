@@ -152,6 +152,8 @@ services:
       - "1080:1080"
     environment:
       - MOCKSERVER_INITIALIZATION_JSON_PATH=/config/mockserver.json
+    volumes:
+      - ./mockserver:/config:ro
     networks:
       - mcp-network
 
