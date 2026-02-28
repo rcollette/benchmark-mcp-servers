@@ -10,10 +10,10 @@ rounds = [
     'benchmark/results/20260210_214524'
 ]
 
-servers = ['python', 'go', 'nodejs', 'java']
+servers = ['python', 'go', 'nodejs', 'java', 'dotnet-aot', 'dotnet-jit', 'dotnet-r2r']
 
-print(f"{'Server':<10} | {'Init (ms)':<10} | {'Net (MB/s)':<10} | {'Max Lat':<10} | {'Comp (ms)':<10} | {'I/O (ms)':<10}")
-print('-' * 80)
+print(f"{'Server':<12} | {'Init (ms)':<10} | {'Net (MB/s)':<10} | {'Max Lat':<10} | {'Comp (ms)':<10} | {'I/O (ms)':<10}")
+print('-' * 82)
 
 def get_network_usage(stats_file):
     try:
@@ -84,4 +84,4 @@ for s in servers:
     avg_comp = sum(d['comp'])/3 if d['comp'] else 0
     avg_io = sum(d['io'])/3 if d['io'] else 0
     
-    print(f"{s:<10} | {avg_init:<10.2f} | {avg_net:<10.2f} | {avg_max:<10.0f} | {avg_comp:<10.2f} | {avg_io:<10.2f}")
+    print(f"{s:<12} | {avg_init:<10.2f} | {avg_net:<10.2f} | {avg_max:<10.0f} | {avg_comp:<10.2f} | {avg_io:<10.2f}")

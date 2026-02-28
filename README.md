@@ -10,7 +10,9 @@ This repository contains the source code and benchmark suite for a comprehensive
 - **Go**: Official SDK
 - **Node.js**: Official SDK
 - **Python**: FastMCP
-- **.NET**: ASP.NET Core 10 Minimal APIs + Native AOT
+- **.NET AOT**: ASP.NET Core 10 Minimal APIs + Native AOT
+- **.NET JIT**: ASP.NET Core 10 Minimal APIs + Standard JIT
+- **.NET R2R**: ASP.NET Core 10 Minimal APIs + ReadyToRun
 
 The goal is to provide empirical data to inform architectural decisions for production MCP deployments by measuring latency, throughput, resource consumption, and reliability.
 
@@ -29,12 +31,14 @@ For the full detailed results, analysis, and recommendations, please visit the e
 
 ```
 benchmark-mcp-servers/
-├── java-server/    # Spring Boot 4.0.0 + Spring AI 2.0.0-M2
-├── go-server/      # Official MCP SDK v1.2.0
-├── nodejs-server/  # SDK v1.26.0 (with CVE-2026-25536 mitigation)
-├── python-server/  # FastMCP 2.12.0+ + FastAPI
-├── dotnet-server/  # .NET 10 + Native AOT + ModelContextProtocol SDK 1.0.0
-├── benchmark/      # k6 load testing scripts and tools
+├── java-server/        # Spring Boot 4.0.0 + Spring AI 2.0.0-M2
+├── go-server/          # Official MCP SDK v1.2.0
+├── nodejs-server/      # SDK v1.26.0 (with CVE-2026-25536 mitigation)
+├── python-server/      # FastMCP 2.12.0+ + FastAPI
+├── dotnet-aot-server/  # .NET 10 + Native AOT + ModelContextProtocol SDK 1.0.0
+├── dotnet-jit-server/  # .NET 10 + Standard JIT + ModelContextProtocol SDK 1.0.0
+├── dotnet-r2r-server/  # .NET 10 + ReadyToRun + ModelContextProtocol SDK 1.0.0
+├── benchmark/          # k6 load testing scripts and tools
 └── docker-compose.yml
 ```
 
@@ -71,7 +75,9 @@ The servers will be available at:
 - Go: `http://localhost:8081`
 - Python: `http://localhost:8082`
 - Node.js: `http://localhost:8083`
-- .NET: `http://localhost:8084`
+- .NET AOT: `http://localhost:8084`
+- .NET JIT: `http://localhost:8085`
+- .NET R2R: `http://localhost:8086`
 
 ### Run Load Tests
 

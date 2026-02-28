@@ -9,7 +9,7 @@ builder.Services
     {
         options.ServerInfo = new()
         {
-            Name = "BenchmarkDotnetServer",
+            Name = "BenchmarkDotnetR2rServer",
             Version = "1.0.0"
         };
     })
@@ -18,11 +18,12 @@ builder.Services
 
 var app = builder.Build();
 
-app.MapGet("/health", () => Results.Text("""{"status":"ok","server_type":"dotnet"}""", "application/json"));
+app.MapGet("/health", () => Results.Text("""{"status":"ok","server_type":"dotnet-r2r"}""", "application/json"));
 
 app.MapMcp("/mcp");
 
-Console.WriteLine(".NET MCP server listening on port 8084");
-Console.WriteLine("MCP endpoint: http://localhost:8084/mcp");
+Console.WriteLine(".NET ReadyToRun MCP server listening on port 8086");
+Console.WriteLine("MCP endpoint: http://localhost:8086/mcp");
 
 app.Run();
+

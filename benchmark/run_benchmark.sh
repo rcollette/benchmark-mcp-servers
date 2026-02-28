@@ -13,9 +13,11 @@ declare -A SERVERS=(
     [go]="mcp-go-server:8081"
     [nodejs]="mcp-nodejs-server:8083"
     [java]="mcp-java-server:8080"
-    [dotnet]="mcp-dotnet-server:8084"
+    [dotnet-aot]="mcp-dotnet-aot-server:8084"
+    [dotnet-jit]="mcp-dotnet-jit-server:8085"
+    [dotnet-r2r]="mcp-dotnet-r2r-server:8086"
 )
-ALL_SERVICES="python-server go-server nodejs-server java-server dotnet-server"
+ALL_SERVICES="python-server go-server nodejs-server java-server dotnet-aot-server dotnet-jit-server dotnet-r2r-server"
 
 # Colors
 GREEN='\033[0;32m'
@@ -156,7 +158,7 @@ main() {
     echo "║           MCP SERVERS BENCHMARK SUITE                        ║"
     echo "╠══════════════════════════════════════════════════════════════╣"
     echo "║  VUs: 10 | Duration: 5m | CPU: 1 core | RAM: 1GB             ║"
-    echo "║  Servers: python, go, nodejs, java, dotnet                   ║"
+    echo "║  Servers: python, go, nodejs, java, dotnet-aot, dotnet-jit, dotnet-r2r ║"
     echo "║  Results: $RESULTS_DIR                                       ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo ""
@@ -170,7 +172,7 @@ main() {
     ok "mock-api is up"
 
     # Benchmark each server
-    for name in python go nodejs java dotnet; do
+    for name in python go nodejs java dotnet-aot dotnet-jit dotnet-r2r; do
         benchmark_server "$name" || warn "Failed to benchmark $name, continuing..."
     done
 

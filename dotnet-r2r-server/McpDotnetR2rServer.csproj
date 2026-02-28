@@ -4,8 +4,10 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <PublishAot>true</PublishAot>
     <InvariantGlobalization>true</InvariantGlobalization>
+    <RootNamespace>McpDotnetServer</RootNamespace>
+    <!-- ReadyToRun: pre-compiled but still requires the .NET runtime -->
+    <PublishReadyToRun>true</PublishReadyToRun>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,4 +15,10 @@
     <PackageReference Include="ModelContextProtocol.AspNetCore" Version="1.0.0" />
   </ItemGroup>
 
+  <!-- Reuse source files from the AOT server project -->
+  <ItemGroup>
+    <Compile Include="..\dotnet-aot-server\BenchmarkTools.cs" Link="BenchmarkTools.cs" />
+  </ItemGroup>
+
 </Project>
+

@@ -9,7 +9,7 @@ import sys
 import os
 from datetime import datetime, timezone
 
-SERVERS = ['python', 'go', 'nodejs', 'java', 'dotnet']
+SERVERS = ['python', 'go', 'nodejs', 'java', 'dotnet-aot', 'dotnet-jit', 'dotnet-r2r']
 
 
 def load_json(path):
@@ -116,10 +116,10 @@ def print_summary(summary):
     print("=" * 75)
 
     # Header
-    print(f"\n  {'Server':<10} {'RPS':>8} {'Avg(ms)':>8} {'P50(ms)':>8} {'P95(ms)':>8} {'P99(ms)':>8} {'CPU%':>7} {'MEM(MB)':>8}")
-    print("  " + "-" * 67)
+    print(f"\n  {'Server':<12} {'RPS':>8} {'Avg(ms)':>8} {'P50(ms)':>8} {'P95(ms)':>8} {'P99(ms)':>8} {'CPU%':>7} {'MEM(MB)':>8}")
+    print("  " + "-" * 69)
 
-    for name in ['python', 'go', 'nodejs', 'java', 'dotnet']:
+    for name in ['python', 'go', 'nodejs', 'java', 'dotnet-aot', 'dotnet-jit', 'dotnet-r2r']:
         data = servers.get(name)
         if not data:
             continue
@@ -128,7 +128,7 @@ def print_summary(summary):
         cpu = data.get('resources', {}).get('cpu', {}).get('avg', 0)
         mem = data.get('resources', {}).get('memory_mb', {}).get('avg', 0)
 
-        print(f"  {name:<10} {rps:>8.1f} {lat.get('avg', 0):>8.1f} {lat.get('p50', 0):>8.1f} {lat.get('p95', 0):>8.1f} {lat.get('p99', 0):>8.1f} {cpu:>7.1f} {mem:>8.1f}")
+        print(f"  {name:<12} {rps:>8.1f} {lat.get('avg', 0):>8.1f} {lat.get('p50', 0):>8.1f} {lat.get('p95', 0):>8.1f} {lat.get('p99', 0):>8.1f} {cpu:>7.1f} {mem:>8.1f}")
 
     # Rankings
     rankings = summary.get('rankings', {})

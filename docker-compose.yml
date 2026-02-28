@@ -80,13 +80,13 @@ services:
     networks:
       - mcp-network
 
-  dotnet-server:
-    build: ./dotnet-server
-    container_name: mcp-dotnet-server
+  dotnet-aot-server:
+    build: ./dotnet-aot-server
+    container_name: mcp-dotnet-aot-server
     ports:
       - "8084:8084"
     environment:
-      - SERVER_TYPE=dotnet
+      - SERVER_TYPE=dotnet-aot
     deploy:
       resources:
         limits:
@@ -94,6 +94,50 @@ services:
           memory: 1G
     healthcheck:
       test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8084/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - mcp-network
+
+  dotnet-jit-server:
+    build:
+      context: .
+      dockerfile: dotnet-jit-server/Dockerfile
+    container_name: mcp-dotnet-jit-server
+    ports:
+      - "8085:8085"
+    environment:
+      - SERVER_TYPE=dotnet-jit
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8085/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - mcp-network
+
+  dotnet-r2r-server:
+    build:
+      context: .
+      dockerfile: dotnet-r2r-server/Dockerfile
+    container_name: mcp-dotnet-r2r-server
+    ports:
+      - "8086:8086"
+    environment:
+      - SERVER_TYPE=dotnet-r2r
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8086/health" ]
       interval: 30s
       timeout: 10s
       retries: 3

@@ -9,8 +9,8 @@ files = [
     'benchmark/results/20260210_214524/summary.json'
 ]
 
-print(f"{'Server':<10} | {'Metric':<12} | {'Round 1':<10} | {'Round 2':<10} | {'Round 3':<10} | {'Var %':<6}")
-print('-' * 80)
+print(f"{'Server':<12} | {'Metric':<12} | {'Round 1':<10} | {'Round 2':<10} | {'Round 3':<10} | {'Var %':<6}")
+print('-' * 82)
 
 metrics = [
     ('RPS', ['http', 'rps']),
@@ -18,8 +18,8 @@ metrics = [
     ('Mem MB', ['resources', 'memory_mb', 'avg'])
 ]
 
-# Order matters: python, go, nodejs, java based on typical file structure
-servers = ['python', 'go', 'nodejs', 'java']
+# Order matters: python, go, nodejs, java, dotnet-aot, dotnet-jit based on typical file structure
+servers = ['python', 'go', 'nodejs', 'java', 'dotnet-aot', 'dotnet-jit', 'dotnet-r2r']
 
 data = []
 for f in files:
@@ -67,5 +67,5 @@ for s in servers:
             max_diff = max(abs(v - avg) for v in vals)
             var_pct = (max_diff / avg) * 100
         
-        print(f"{s:<10} | {m_name:<12} | {vals[0]:<10.1f} | {vals[1]:<10.1f} | {vals[2]:<10.1f} | {var_pct:<6.1f}%")
-    print('-' * 80)
+        print(f"{s:<12} | {m_name:<12} | {vals[0]:<10.1f} | {vals[1]:<10.1f} | {vals[2]:<10.1f} | {var_pct:<6.1f}%")
+    print('-' * 82)

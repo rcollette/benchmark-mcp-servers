@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Test script for all 4 MCP servers.
+Test script for all MCP servers.
 Tests: initialize, tools/list, and tools/call for each tool.
 Handles both plain JSON and SSE (text/event-stream) responses.
 """
@@ -11,10 +11,13 @@ from datetime import datetime
 
 # All servers use the same endpoint path
 SERVERS = {
-    "python":  "http://localhost:8082/mcp",
-    "go":      "http://localhost:8081/mcp",
-    "nodejs":  "http://localhost:8083/mcp",
-    "java":    "http://localhost:8080/mcp",
+    "python":      "http://localhost:8082/mcp",
+    "go":          "http://localhost:8081/mcp",
+    "nodejs":      "http://localhost:8083/mcp",
+    "java":        "http://localhost:8080/mcp",
+    "dotnet-aot":  "http://localhost:8084/mcp",
+    "dotnet-jit":  "http://localhost:8085/mcp",
+    "dotnet-r2r":  "http://localhost:8086/mcp",
 }
 
 
