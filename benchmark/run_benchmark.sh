@@ -13,8 +13,9 @@ declare -A SERVERS=(
     [go]="mcp-go-server:8081"
     [nodejs]="mcp-nodejs-server:8083"
     [java]="mcp-java-server:8080"
+    [dotnet]="mcp-dotnet-server:8084"
 )
-ALL_SERVICES="python-server go-server nodejs-server java-server"
+ALL_SERVICES="python-server go-server nodejs-server java-server dotnet-server"
 
 # Colors
 GREEN='\033[0;32m'
@@ -152,11 +153,11 @@ benchmark_server() {
 main() {
     echo ""
     echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║           MCP SERVERS BENCHMARK SUITE                      ║"
+    echo "║           MCP SERVERS BENCHMARK SUITE                        ║"
     echo "╠══════════════════════════════════════════════════════════════╣"
-    echo "║  VUs: 10 | Duration: 5m | CPU: 1 core | RAM: 1GB          ║"
-    echo "║  Servers: python, go, nodejs, java                         ║"
-    echo "║  Results: $RESULTS_DIR"
+    echo "║  VUs: 10 | Duration: 5m | CPU: 1 core | RAM: 1GB             ║"
+    echo "║  Servers: python, go, nodejs, java, dotnet                   ║"
+    echo "║  Results: $RESULTS_DIR                                       ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
     echo ""
 
@@ -169,7 +170,7 @@ main() {
     ok "mock-api is up"
 
     # Benchmark each server
-    for name in python go nodejs java; do
+    for name in python go nodejs java dotnet; do
         benchmark_server "$name" || warn "Failed to benchmark $name, continuing..."
     done
 
@@ -183,10 +184,10 @@ main() {
 
     echo ""
     echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║  BENCHMARK COMPLETE                                        ║"
+    echo "║  BENCHMARK COMPLETE                                          ║"
     echo "╠══════════════════════════════════════════════════════════════╣"
-    echo "║  Results: $RESULTS_DIR"
-    echo "║  Summary: $RESULTS_DIR/summary.json"
+    echo "║  Results: $RESULTS_DIR                                       ║"
+    echo "║  Summary: $RESULTS_DIR/summary.json                          ║"
     echo "╚══════════════════════════════════════════════════════════════╝"
 }
 

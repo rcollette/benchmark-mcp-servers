@@ -10,6 +10,7 @@ This repository contains the source code and benchmark suite for a comprehensive
 - **Go**: Official SDK
 - **Node.js**: Official SDK
 - **Python**: FastMCP
+- **.NET**: ASP.NET Core 10 Minimal APIs + Native AOT
 
 The goal is to provide empirical data to inform architectural decisions for production MCP deployments by measuring latency, throughput, resource consumption, and reliability.
 
@@ -32,6 +33,7 @@ benchmark-mcp-servers/
 ├── go-server/      # Official MCP SDK v1.2.0
 ├── nodejs-server/  # SDK v1.26.0 (with CVE-2026-25536 mitigation)
 ├── python-server/  # FastMCP 2.12.0+ + FastAPI
+├── dotnet-server/  # .NET 10 + Native AOT + ModelContextProtocol SDK 1.0.0
 ├── benchmark/      # k6 load testing scripts and tools
 └── docker-compose.yml
 ```
@@ -69,6 +71,7 @@ The servers will be available at:
 - Go: `http://localhost:8081`
 - Python: `http://localhost:8082`
 - Node.js: `http://localhost:8083`
+- .NET: `http://localhost:8084`
 
 ### Run Load Tests
 

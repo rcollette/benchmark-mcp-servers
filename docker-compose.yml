@@ -80,6 +80,26 @@ services:
     networks:
       - mcp-network
 
+  dotnet-server:
+    build: ./dotnet-server
+    container_name: mcp-dotnet-server
+    ports:
+      - "8084:8084"
+    environment:
+      - SERVER_TYPE=dotnet
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 1G
+    healthcheck:
+      test: [ "CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8084/health" ]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - mcp-network
+
   # Mock API para testes de I/O
   mock-api:
     image: mockserver/mockserver:latest
