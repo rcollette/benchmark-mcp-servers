@@ -23,9 +23,9 @@ function createMcpServer() {
                 throw new Error('n deve estar entre 0 e 40');
             }
 
-            let a = 0, b = 1;
-            for (let i = 0; i < n; i++) {
-                [a, b] = [b, a + b];
+            function fib(x) {
+                if (x <= 1) return x;
+                return fib(x - 1) + fib(x - 2);
             }
 
             return {
@@ -33,7 +33,7 @@ function createMcpServer() {
                     type: 'text',
                     text: JSON.stringify({
                         input: n,
-                        result: a,
+                        result: fib(n),
                         server_type: 'nodejs',
                     }),
                 }],
